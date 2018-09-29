@@ -1,0 +1,124 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+  <header class="c-hero">
+    <img class="c-hero__logo" src="/site_images/revised_logo.svg" alt="logo">
+
+    <div class="c-hero__text">
+      <h1 class="c-hero__tagline">{{ entry.title }}</h1>
+      <a class="c-button c-hero__cta u-mt3" href="#subscribe-form" rel="modal:open">Find Out About New Sales</a>
+    </div>
+
+    {% include 'subscribe-form.html' %}
+  </header>
+
+  <hr>
+
+  <div id="upcoming-sales">
+    <h2 class="c-header__section c-header--hash-link-padding">Upcoming Sales</h2>
+
+    {% for entry in craft.entries.section('sales') %}
+      <div class="c-content-block {{ loop.index is divisible by(2) ? 'c-content-block--alternate' : '' }}">
+        <div class="c-content-block__side">
+          {# Pull out first photo from gallery #}
+          {% set asset = entry.photos.first|default(false) %}
+
+          {% if asset %}
+            <a href="{{ entry.url }}" class="u-link--no-underline">
+              <img src="{{ asset.getUrl() }}" />
+            </a>
+          {% endif %}
+
+          <div class="c-button__group u-mt3">
+            <a href="{{ entry.url }}#photos" class="c-button">Photos</a>
+            <a
+              target="_BLANK"
+              href="#"
+              class="c-button" >Map</a>
+          </div>
+        </div>
+        <div class="c-content-block__main">
+          <h4 class="c-header__sub">
+            {% if entry.saleaddress.address2 %}
+              {{ entry.saleaddress.address1 }}, {{ entry.saleaddress.address2 }},
+            {% else %}
+              {{ entry.saleaddress.address1 }},
+            {% endif %}
+
+            {% if entry.saleaddress.administrativeArea != 'Arkansas' %}
+              {{ entry.saleaddress.locality }}, {{ entry.saleaddress.administrativeArea }}
+            {% else %}
+              {{ entry.saleaddress.locality }}
+            {% endif %}
+          </h4>
+
+          <h3 class="c-header__main">
+            <a href="{{ entry.url }}">{{ entry.title }}</a>
+          </h3>
+
+          <div class="c-card__grid">
+            {% for row in entry.preview %}
+              {% if row.previewDate > now %}
+                <div class="c-card">
+                  <h5 class="c-header__label u-mb1">Preview</h5>
+                    <div>
+                      {{ row.previewDate|date("l, M. j") }}
+                    </div>
+
+                    <div>
+                      {{ row.previewStartTime.localeTime }} - {{ row.previewEndTime.localeTime }}
+                    </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            <a href="{{ entry.url }}" class="u-link--no-underline">
+              <div class="c-card">
+                {# Show nearest sale weekend date that is not already past #}
+                {% set break = false %}
+                {% for row in entry.saleDates %}
+                  {% if row.saleWeekendEndDate > now and not break %}
+                    {% set break = true %}
+                    {% if row.percentDiscount > 0 %}
+                      <div class="c-badge c-badge--promo">
+                        {{ row.percentDiscount }}% Off
+                      </div>
+                    {% endif %}
+
+                    <h5 class="c-header__label u-mb1">Sale</h5>
+
+                    <div>
+                      {{ row.saleWeekendStartDate|date("l, M. j") }} - {{ row.saleWeekendEndDate|date("l, M. j") }}
+                    </div>
+
+                    <div>
+                      {{ companyInformation.businessOpeningHours.localeTime }} - {{ companyInformation.businessClosingHours.localeTime }} daily
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </a>
+          </div>
+
+          <p>{{ entry.saleDescription }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <hr>
+
+  <div id="setup-sale">
+    <h2 class="c-header__section c-header--hash-link-padding">Setup a Sale with Us</h2>
+
+    <div class="c-content-block c-content-block--alternate">
+      <div class="c-content-block__side">
+        {% include 'contact-us.html' %}
+      </div>
+      <div class="c-content-block__main">
+        {{ entry.saleSetup}}
+      </div>
+    </div>
+  </div>
+{% endblock %}

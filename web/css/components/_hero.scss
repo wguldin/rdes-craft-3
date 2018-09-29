@@ -1,0 +1,56 @@
+.c-hero {
+    display: flex;
+    margin: 1.2em auto 1.2em;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+
+    @media (min-width: 42em) {
+        width: 83.35%;
+        flex-direction: row;
+    }
+
+    @media (min-width: 87em) {
+        width: 66.7%;
+    }
+}
+
+.c-hero__logo {
+    height: 100%;
+    border: 0;
+    width: 60%;
+    margin: 0 auto 1em;
+
+    @media (min-width: 42em) {
+        width: auto;
+        margin: 0;
+    }
+}
+
+.c-hero__text {
+    flex-grow: 1;
+    text-align: center;
+
+    @media (min-width: 42em) {
+        margin-left: 3em;
+        text-align: left;
+    }
+}
+
+.c-hero__tagline {
+    font-size: 1.3em;
+    font-family: $serif-stack;
+    font-weight: 400;
+    line-height: 1.4;
+    text-transform: none;
+    margin: 0;
+
+    @media (min-width: 42em) {
+        text-align: left;
+        font-size: 1.6em;
+    }
+}
+
+.c-hero__cta {
+    margin-top: 1.5em;
+}
