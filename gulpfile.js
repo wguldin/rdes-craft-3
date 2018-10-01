@@ -12,18 +12,18 @@ var uglify       = require('gulp-uglify');
 
 // Compile Our Sass
 gulp.task('sass', function() {
-    return gulp.src('public/css/main.scss')
+    return gulp.src('web/css/main.scss')
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(autoprefixer({
             browsers: ['> 5%', 'ie 8'],
             cascade: false
         }))
-        .pipe(gulp.dest('public/dist/css'));
+        .pipe(gulp.dest('web/dist/css'));
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('public/css/**/*.scss', ['sass']);
+    gulp.watch('web/css/**/*.scss', ['sass']);
 });
 
 // Default Task

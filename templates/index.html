@@ -60,7 +60,7 @@
           <div class="c-card__grid">
             {% for row in entry.preview %}
               {% if row.previewDate > now %}
-                <div class="c-card">
+                <div class="c-card c-card--no-link">
                   <h5 class="c-header__label u-mb1">Preview</h5>
                     <div>
                       {{ row.previewDate|date("l, M. j") }}

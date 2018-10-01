@@ -16,14 +16,20 @@
 }
 
 .c-hero__logo {
-    height: 100%;
-    border: 0;
-    width: 60%;
-    margin: 0 auto 1em;
+    display: none;
 
     @media (min-width: 42em) {
+        height: 100%;
+        border: 0;
+        width: 50%;
+        margin: 0 auto 1em;
+        display: block;
         width: auto;
         margin: 0;
+    }
+
+    @media (min-width: 52em) {
+        width: 60%;
     }
 }
 

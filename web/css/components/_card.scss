@@ -9,4 +9,15 @@
     padding: 1em;
     font-size: 1.2em;
     margin-right: 1em;
+    transition: background-color 120ms ease-in;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .033);
+    }
+}
+
+.c-card--no-link {
+    &:hover {
+      background: none;
+    }
 }

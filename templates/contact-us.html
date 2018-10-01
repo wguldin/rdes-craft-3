@@ -1,42 +1,52 @@
 {% macro errorList(errors) %}
     {% if errors %}
-      {% for error in errors %}
-        {{ error }}
-      {% endfor %}
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
-{% endmacro %} 
+{% endmacro %}
 
 {% from _self import errorList %}
 
 <form method="post" action="" accept-charset="UTF-8" id="contact-us">
     <h4 class="u-mb3 c-header--hash-link-padding">Contact Us</h4>
 
-    {{ getCsrfInput() }}
-    <input type="hidden" name="action" value="contactForm/sendMessage">
-    <input type="hidden" name="redirect" value="contact/thanks">
+    {{ csrfInput() }}
+    <input type="hidden" name="action" value="contact-form/send">
+    {{ redirectInput('contact/thanks') }}
 
     <label>
       Your Name
-      <input type="text" name="fromName" value="{% if message is defined %}{{ message.fromName }}{% endif %}">
-      <span class="c-forms__note c-forms__note--error">{{ message is defined and message ? errorList(message.getErrors('fromName')) }}</span>
+      <input id="from-name" type="text" name="fromName" required value="{{ message.fromName ?? '' }}">
+      <span class="c-forms__note c-forms__note--error">
+        {{ message is defined and message ? errorList(message.getErrors('fromName')) }}
+      </span>
     </label>
 
     <label>
       Your Email
-      <input type="email" name="fromEmail" value="{% if message is defined %}{{ message.fromEmail }}{% endif %}">
-      <span class="c-forms__note c-forms__note--error">{{ message is defined and message ? errorList(message.getErrors('fromEmail')) }}</span>
+      <input id="from-email" type="email" name="fromEmail" required value="{{ message.fromEmail ?? '' }}">
+      <span class="c-forms__note c-forms__note--error">
+        {{ message is defined and message ? errorList(message.getErrors('fromEmail')) }}
+      </span>
     </label>
 
     <label>
       Subject
-      <input type="text" name="subject" value="{% if message is defined %}{{ message.subject }}{% endif %}">
-      <span class="c-forms__note c-forms__note--error">{{ message is defined and message ? errorList(message.getErrors('subject')) }}</span>
+      <input id="subject" type="text" name="subject" required value="{{ message.subject ?? '' }}">
+      <span class="c-forms__note c-forms__note--error">
+        {{ message is defined and message ? errorList(message.getErrors('subject')) }}
+      </span>
     </label>
 
     <label>
       Message
-      <textarea name="message">{% if message is defined %}{{ message.message }}{% endif %}</textarea>
-      <span class="c-forms__note c-forms__note--error">{{ message is defined and message ? errorList(message.getErrors('message')) }}</span>
+      <textarea id="message" required name="message">{{ message.message ?? '' }}</textarea>
+      <span class="c-forms__note c-forms__note--error">
+        {{ message is defined and message ? errorList(message.getErrors('message')) }}
+      </span>
     </label>
 
     <button type="submit" class="c-button c-button--full u-mt2">
