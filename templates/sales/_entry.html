@@ -30,8 +30,8 @@
       <div class="c-image-grid">
         {% for photo in entry.photos %}
           <div class="c-image-grid__image-container">
-            <a class="c-image-grid__image" href="/{{ photo.getURL() }}" data-caption="{{ photo.title }}">
-              <img src="/{{ photo.getURL() }}" alt="{{ photo.title }}"/>
+            <a class="c-image-grid__image" href="{{ siteUrl }}{{ photo.getURL() }}" data-caption="{{ photo.title }}">
+              <img src="{{ siteUrl }}{{ photo.getURL() }}" alt="{{ photo.title }}"/>
             </a>
           </div>
         {% endfor %}

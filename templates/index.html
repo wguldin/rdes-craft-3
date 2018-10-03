@@ -7,7 +7,7 @@
 
     <div class="c-hero__text">
       <h1 class="c-hero__tagline">{{ entry.title }}</h1>
-      <a class="c-button c-hero__cta u-mt3" href="#subscribe-form" rel="modal:open">Find Out About New Sales</a>
+      <a class="c-button c-hero__cta u-mt3" href="{{ siteUrl }}#subscribe-form" rel="modal:open">Find Out About New Sales</a>
     </div>
 
     {% include 'subscribe-form.html' %}
@@ -74,7 +74,7 @@
             {% endfor %}
 
               <div class="c-card">
-                <a href="{{ entry.url }}" class="u-link--no-underline">
+                <a href="{{ siteUrl }}{{ entry.url }}" class="u-link--no-underline">
                   {# Show nearest sale weekend date that is not already past #}
                   {% set break = false %}
                   {% for row in entry.saleDates %}
