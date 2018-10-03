@@ -1,6 +1,18 @@
 .c-image-grid {
-    columns: 5;
+    columns: 2;
     column-gap: 1em;
+
+    @media (min-width: 38em) {
+        columns: 3;
+    }
+
+    @media (min-width: 50em) {
+        columns: 4;
+    }
+
+    @media (min-width: 68em) {
+        columns: 5;
+    }
 }
 
 .c-image-grid__image-container {
