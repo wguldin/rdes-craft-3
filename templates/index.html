@@ -73,32 +73,32 @@
               {% endif %}
             {% endfor %}
 
-            <a href="{{ entry.url }}" class="u-link--no-underline">
               <div class="c-card">
-                {# Show nearest sale weekend date that is not already past #}
-                {% set break = false %}
-                {% for row in entry.saleDates %}
-                  {% if row.saleWeekendEndDate > now and not break %}
-                    {% set break = true %}
-                    {% if row.percentDiscount > 0 %}
-                      <div class="c-badge c-badge--promo">
-                        {{ row.percentDiscount }}% Off
+                <a href="{{ entry.url }}" class="u-link--no-underline">
+                  {# Show nearest sale weekend date that is not already past #}
+                  {% set break = false %}
+                  {% for row in entry.saleDates %}
+                    {% if row.saleWeekendEndDate > now and not break %}
+                      {% set break = true %}
+                      {% if row.percentDiscount > 0 %}
+                        <div class="c-badge c-badge--promo">
+                          {{ row.percentDiscount }}% Off
+                        </div>
+                      {% endif %}
+
+                      <h5 class="c-header__label u-mb1">Sale</h5>
+
+                      <div>
+                        {{ row.saleWeekendStartDate|date("l, M. j") }} - {{ row.saleWeekendEndDate|date("l, M. j") }}
+                      </div>
+
+                      <div>
+                        {{ companyInformation.businessOpeningHours.localeTime }} - {{ companyInformation.businessClosingHours.localeTime }} daily
                       </div>
                     {% endif %}
-
-                    <h5 class="c-header__label u-mb1">Sale</h5>
-
-                    <div>
-                      {{ row.saleWeekendStartDate|date("l, M. j") }} - {{ row.saleWeekendEndDate|date("l, M. j") }}
-                    </div>
-
-                    <div>
-                      {{ companyInformation.businessOpeningHours.localeTime }} - {{ companyInformation.businessClosingHours.localeTime }} daily
-                    </div>
-                  {% endif %}
-                {% endfor %}
+                  {% endfor %}
+                </a>
               </div>
-            </a>
           </div>
 
           <p>{{ entry.saleDescription }}</p>
