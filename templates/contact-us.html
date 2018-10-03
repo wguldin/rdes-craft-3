@@ -14,8 +14,8 @@
     <h4 class="u-mb3 c-header--hash-link-padding">Contact Us</h4>
 
     {{ csrfInput() }}
-    <input type="hidden" name="action" value="contact-form/send">
-    {{ redirectInput('contact/thanks') }}
+    <input type="hidden" name="action" value="/contact-form/send">
+    {{ redirectInput('/contact/thanks') }}
 
     <label>
       Your Name
