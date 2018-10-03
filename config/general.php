@@ -39,12 +39,12 @@ return [
     // Staging environment settings
     'staging' => [
         // Base site URL
-        'siteUrl' => null,
+        'siteUrl' => '/',
     ],
 
     // Production environment settings
     'production' => [
         // Base site URL
-        'siteUrl' => null,
+        'siteUrl' => '/',
     ],
 ];
