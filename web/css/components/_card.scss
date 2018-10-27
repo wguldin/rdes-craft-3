@@ -17,6 +17,7 @@
     transition: background-color 120ms ease-in;
     width: 100%;
     margin-bottom: 1em;
+    line-height: 1.4;
 
     &:hover {
         background-color: rgba(0, 0, 0, .033);
@@ -34,7 +35,7 @@
     }
 }
 
-.c-card__full-link {
+.c-card__block-link {
     display: block;
     margin: -1em;
     padding: 1em;
