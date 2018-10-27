@@ -34,6 +34,12 @@
     }
 }
 
+.c-card__full-link {
+    display: block;
+    margin: -1em;
+    padding: 1em;
+}
+
 .c-card--no-link {
     &:hover {
       background: none;

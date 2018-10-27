@@ -74,7 +74,7 @@
             {% endfor %}
 
               <div class="c-card">
-                <a href="{{ entry.url }}" class="u-link--no-underline">
+                <a href="{{ entry.url }}" class="u-link--no-underline c-card__block-link">
                   {# Show nearest sale weekend date that is not already past #}
                   {% set break = false %}
                   {% for row in entry.saleDates %}
