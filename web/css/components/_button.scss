@@ -1,4 +1,4 @@
-.c-button {
+@mixin button {
     padding: .7em 1.4em;
     background-image: none;
     background-color: $color-green-050;
@@ -17,6 +17,10 @@
         border: 1px solid lighten($color-green-100, 15%);
         color: lighten($color-green-050, 40%);
     }
+}
+
+.c-button {
+    @include button;
 }
 
 .c-button--full {

@@ -4,6 +4,7 @@ $mobile-nav-breakpoint: 52em;
     display: flex;
     background-color: $color-green-050;
     border-bottom: 1px solid rgba($color-green-075, .5);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
     font-family: $sans-stack;
     align-items: center;
     padding: 0 .5rem;
@@ -13,11 +14,11 @@ $mobile-nav-breakpoint: 52em;
     left: 0;
     right: 0;
     z-index: 1;
-    //flex-wrap: wrap;
+    flex-wrap: wrap;
 
     @media (min-width: $mobile-nav-breakpoint) {
         padding: 0 2rem;
-        //flex-wrap: nowrap;
+        flex-wrap: nowrap;
     }
 }
 
@@ -67,35 +68,71 @@ $mobile-nav-breakpoint: 52em;
 }
 
 .c-nav__list {
-    display: flex;
-    align-items: center;
     list-style: none;
-    flex-shrink: 1;
-    margin: 0 0 .6em 0;
+    margin: 0 -.5em;
     padding: 0;
     display: none;
-    max-height: 8em;
-    transition: max-height 120ms ease-in;
+    width: calc(100% + 1em);
+    border-top: 1px solid rgba($color-green-075, .5);
 
     @media (min-width: $mobile-nav-breakpoint) {
         margin: .6em .8em;
+        display: flex;
+        align-items: center;
+        flex-shrink: 1;
+        width: auto;
+        border: 0;
+        width: auto;
+    }
+}
+
+.c-nav__list--active {
+    display: block;
+
+    @media (min-width: $mobile-nav-breakpoint) {
         display: flex;
     }
 }
 
 .c-nav__item {
-    margin: 0 1em 0 0;
-    background-color: transparent;
-    background-image: none;
-    font-size: .8em;
-    padding: .4em .8em;
+    width: 100%;
+    border-bottom: 1px dotted rgba($color-green-075, .5);
+
+    &:last-child {
+        border: 0;
+    }
 
     @media (min-width: $mobile-nav-breakpoint) {
-        margin: 0 0 0 1.5em;
+        width: auto;
+        border: 0;
     }
 }
 
-.c-nav__item--mobile {
+.c-nav__link {
+    background-image: none;
+    padding: .5em;
+    display: block;
+    font-size: .8em;
+    transition: color 120ms ease-in, background-color 120ms ease-in;
+
+    &:hover {
+        background-color: $color-green-075;
+        color: white;
+    }
+
+    @media (min-width: $mobile-nav-breakpoint) {
+        @include button;
+
+        font-size: .8em;
+        margin: 0 0 0 1.5em;
+    }
+
+    @media (min-width: 58em) {
+        font-size: .9em;
+    }
+}
+
+.c-nav__mobile-link {
     display: inline-block;
 
     @media (min-width: $mobile-nav-breakpoint) {
