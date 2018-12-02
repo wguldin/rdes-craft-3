@@ -8,6 +8,12 @@ $lg-breakpoint: 48em;
     @media (min-width: $md-breakpoint) {
         flex-direction: row;
     }
+
+    & + .c-content-block {
+        margin-top: 1.33em;
+        padding-top: 2em;
+        border-top: 1px dotted $color-gray-060;
+    }
 }
 
 .c-content-block__side {

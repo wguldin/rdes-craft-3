@@ -1,11 +1,9 @@
 .c-card__grid {
     display: flex;
     flex-wrap: wrap;
-    margin: 1em 0;
 
     @media (min-width: 42em) {
         flex-wrap: nowrap;
-        margin: 2em 0;
     }
 }
 
@@ -18,18 +16,15 @@
     width: 100%;
     margin-bottom: 1em;
     line-height: 1.4;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .2);
 
     &:hover {
-        background-color: rgba(0, 0, 0, .033);
-    }
-
-    &:last-child {
-        margin-bottom: 0;
+        background-color: rgba(0, 0, 0, .05);
     }
 
     @media (min-width: 42em) {
         margin-right: 1em;
-        margin-bottom: 0;
+        margin-bottom: 1.75em;
         font-size: 1.2em;
         width: auto;
     }
