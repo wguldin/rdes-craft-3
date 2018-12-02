@@ -31,8 +31,6 @@
     margin-top: .1em;
 }
 
-$promo-color: hsl(19, 76%, 55%);
-
 .c-badge--promo {
     border: 1px solid darken($promo-color, 8%);
     background-color: $promo-color;

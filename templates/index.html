@@ -53,9 +53,18 @@
             {% endif %}
           </h4>
 
-          <h3 class="c-header__main">
+          <h3 class="c-header__main u-mb4">
             <a href="{{ entry.url }}">{{ entry.title }}</a>
           </h3>
+
+          {% for row in entry.preview %}
+            {% if row.previewDate > now %}
+              <div class="u-float-left u-mr2">
+                <i class="fa fa-exclamation-circle u-promo" class="u-promo"></i>
+              </div>
+              {{ entry.previewDescription }}
+            {% endif %}
+          {% endfor %}
 
           <div class="c-card__grid">
             {% for row in entry.preview %}
