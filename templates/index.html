@@ -58,7 +58,7 @@
           </h3>
 
           {% for row in entry.preview %}
-            {% if row.previewDate > now %}
+            {% if date(row.previewDate)|date('d/m/Y') > date()|date('d/m/Y') %}
               <div class="u-float-left u-mr2">
                 <i class="fa fa-exclamation-circle u-promo" class="u-promo"></i>
               </div>
@@ -68,7 +68,7 @@
 
           <div class="c-card__grid">
             {% for row in entry.preview %}
-              {% if row.previewDate > now %}
+              {% if date(row.previewDate)|date('d/m/Y') > date()|date('d/m/Y') %}
                 <div class="c-card c-card--no-link">
                   <h5 class="c-header__label u-mb1">Preview</h5>
                     <div>
@@ -85,7 +85,7 @@
             {# Show nearest sale weekend date that is not already past #}
             {% set break = false %}
             {% for row in entry.saleDates %}
-              {% if row.saleWeekendEndDate > now and not break %}
+              {% if date(row.saleWeekendEndDate)|date('d/m/Y') >= date()|date('d/m/Y') and not break %}
                 {% set break = true %}
                 <div class="c-card">
                   <a href="{{ entry.url }}" class="u-link--no-underline c-card__block-link">
