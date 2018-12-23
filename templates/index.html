@@ -15,8 +15,8 @@
 
   <hr>
 
-  <div id="upcoming-sales">
-    <h2 class="c-header__section c-header--hash-link-padding">Upcoming Sales</h2>
+  <div id="scheduled-sales">
+    <h2 class="c-header__section c-header--hash-link-padding">Scheduled Sales</h2>
 
     {% for entry in craft.entries.section('sales') %}
       <div class="c-content-block {{ loop.index is divisible by(2) ? 'c-content-block--alternate' : '' }}">
@@ -117,6 +117,23 @@
       </div>
     {% endfor %}
   </div>
+
+  {% if craft.entries.section('upcomingSales') is not empty %}
+    <div id="scheduled-sales" class="u-mt5">
+      <h2 class="c-header__section c-header--hash-link-padding">Upcoming Sales</h2>
+
+      <div class="c-content-block">
+        <div class="c-content-block__main">
+          {% for entry in craft.entries.section('upcomingSales') %}
+            <div class="c-card c-card--no-link">
+                {{ entry.title }}
+                {{ entry.upcomingSaleDescription }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
   <hr>
 
